@@ -1,6 +1,7 @@
 from statistics import mean
 from string import ascii_letters
 
+
 # A.
 def get_above_average(numbers):
     return [a_num for a_num in numbers if a_num > mean(numbers)]
@@ -8,14 +9,12 @@ def get_above_average(numbers):
 
 # B.
 def remove_patrick(sentence):
-    return ''.join([letter for letter in sentence if letter not in 'patrickPATRICK'])
+    return ''.join([letter for letter in sentence if letter.lower() not in 'patrick'])
 
 
 # C.
 def remove_generic_numbers(inp_nums):
-    return [int(str_rmv_num) if str_rmv_num != '' else 0 for str_rmv_num in
-                                           [str_num.replace('5', '').replace('7', '') for str_num in
-                                            [str(num) for num in inp_nums]]]
+    return list(map(int, ['0' + rmv_num.replace('5', '').replace('7', '') for rmv_num in map(str, inp_nums)]))
 
 
 # D.
@@ -27,11 +26,10 @@ def remove_returning_letter(inp_words):
                                                if ltr_count[1] > 3] if ltr in bad_word]]
 
 
-
 def main():
     print(get_above_average(range(10)))
     print(remove_patrick('patrickRavivSchafferStar'))
-    print(remove_generic_numbers([75, 745, 3575753]))
+    print(remove_generic_numbers([75, 745, 6307, 73575753]))
     print(remove_returning_letter(['bla', 'bloop', 'kkabb', 'ting', 'tang']))
 
 
