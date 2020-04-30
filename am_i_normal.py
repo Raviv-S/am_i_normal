@@ -4,7 +4,7 @@ from string import ascii_letters
 
 # A.
 def get_above_average(numbers):
-    return [a_num for a_num in numbers if a_num > mean(numbers)]
+    return [num for num in numbers if num > mean(numbers)]
 
 
 # B.
@@ -19,18 +19,15 @@ def remove_generic_numbers(inp_nums):
 
 # D.
 def remove_returning_letter(inp_words):
-    return [good_word for good_word in inp_words if good_word not in
-                                             [bad_word for bad_word in inp_words for ltr in
-                                              [ltr_count[0] for ltr_count in
-                                               [(letter, ''.join(inp_words).count(letter)) for letter in ascii_letters]
-                                               if ltr_count[1] > 3] if ltr in bad_word]]
+    return list(set(inp_words)
+                .difference([word for word in inp_words for letter in word if ''.join(inp_words).count(letter) > 3]))
 
 
 def main():
     print(get_above_average(range(10)))
     print(remove_patrick('patrickRavivSchafferStar'))
     print(remove_generic_numbers([75, 745, 6307, 73575753]))
-    print(remove_returning_letter(['bla', 'bloop', 'kkabb', 'ting', 'tang']))
+    print(remove_returning_letter(['test', 'toast', 'not printed', 'yes!', 'xyz']))
 
 
 if __name__ == '__main__':
